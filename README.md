@@ -25,5 +25,5 @@ $ ./server
 3. Open another terminal and run the following commands
 ```sh
 $ cd rpc
-$ ./client
+$ ./client localhost
 ```
