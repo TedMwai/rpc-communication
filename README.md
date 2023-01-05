@@ -9,6 +9,10 @@ This procedure takes in struct made up of an integer and string then it returns 
 ### Procedure 3
 This procedure takes in a integer by reference and returns a string. 
 
+<!-- Image showing an overview of RPC project -->
+### The image below shows an overview of RPC communication
+![RPC Overview](./rpc.jpg)
+
 ## Requirements
 * [RPCGEN] - RPCGEN is a tool that generates C code from a RPC specification.
 * [GNU Make] - GNU Make is a tool which controls the generation of executables and other non-source files of a program from the program's source files.
