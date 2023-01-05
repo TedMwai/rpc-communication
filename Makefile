@@ -4,8 +4,8 @@ CLNT = client
 SRVR = server
 CFLAGS = -g -Wall
 
-SRVR_OBJ = server.o msg_svc.o
-CLNT_OBJ = client.o msg_clnt.o
+SRVR_OBJ = server.o msg_xdr.o msg_svc.o
+CLNT_OBJ = client.o msg_xdr.o msg_clnt.o
 
 .c.o:; gcc -c -o $@ $(CFLAGS) $<
 
