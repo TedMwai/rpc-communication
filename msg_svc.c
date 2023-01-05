@@ -21,7 +21,7 @@ myprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 {
 	union {
 		int proc1_1_arg;
-		int proc2_1_arg;
+		parameter proc2_1_arg;
 		int proc3_1_arg;
 	} argument;
 	char *result;
@@ -40,7 +40,7 @@ myprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		break;
 
 	case PROC2:
-		_xdr_argument = (xdrproc_t) xdr_int;
+		_xdr_argument = (xdrproc_t) xdr_parameter;
 		_xdr_result = (xdrproc_t) xdr_float;
 		local = (char *(*)(char *, struct svc_req *)) proc2_1_svc;
 		break;

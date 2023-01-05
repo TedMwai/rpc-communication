@@ -25,13 +25,13 @@ proc1_1(int *argp, CLIENT *clnt)
 }
 
 float *
-proc2_1(int *argp, CLIENT *clnt)
+proc2_1(parameter *argp, CLIENT *clnt)
 {
 	static float clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
 	if (clnt_call (clnt, PROC2,
-		(xdrproc_t) xdr_int, (caddr_t) argp,
+		(xdrproc_t) xdr_parameter, (caddr_t) argp,
 		(xdrproc_t) xdr_float, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
