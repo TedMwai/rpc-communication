@@ -1,9 +1,9 @@
 client
 client.o
-msg_clnt.o
-msg_svc.o
+rpc_clnt.o
+rpc_svc.o
 server
 server.o
-msg_xdr.o
+rpc_xdr.o
 /.vscode
 image.drawio
