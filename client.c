@@ -6,9 +6,9 @@
 /*
  * Client-side function prototypes for the remote procedures.
  */
-int * proc_1_1(int , CLIENT *);
-float * proc_2_1(int , char *, CLIENT *);
-char ** proc_3_1(int , CLIENT *);
+int *proc_1_1(int, CLIENT *);
+float *proc_2_1(int, char *, CLIENT *);
+char **proc_3_1(int, CLIENT *);
 
 int main(int argc, char *argv[])
 {
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
 
     /* Call procedure 1 */
     int procOneResult = *proc_1_1(param1, cl);
-    printf("Result from procedure 1: {%d} after squaring: {%d}\n",param1, procOneResult);
+    printf("Result from procedure 1: {%d} after squaring: {%d}\n", procOneResult, param1);
 
     /* Call procedure 2 */
     float procTwoResult = *proc_2_1(param2, param2_string, cl);
-    printf("Result from procedure 2: %f after converting: {%d} and: {%s} to a float\n",param2, param2_string, procTwoResult);
+    printf("Result from procedure 2: %f after converting: {%d} and: {%s} to a float\n", procTwoResult, param2, param2_string);
 
     /* Call procedure 3 */
     char *result_string = *proc_3_1(param3, cl);
