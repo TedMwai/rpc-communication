@@ -10,12 +10,12 @@
 static struct timeval TIMEOUT = { 25, 0 };
 
 int *
-proc1_1(int arg1,  CLIENT *clnt)
+proc_1_1(int arg1,  CLIENT *clnt)
 {
 	static int clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call (clnt, PROC1,
+	if (clnt_call (clnt, PROC_1,
 		(xdrproc_t) xdr_int, (caddr_t) &arg1,
 		(xdrproc_t) xdr_int, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
@@ -24,32 +24,32 @@ proc1_1(int arg1,  CLIENT *clnt)
 	return (&clnt_res);
 }
 
-char *
-proc2_1(char *y,  CLIENT *clnt)
+float *
+proc_2_1(int arg1, char *x,  CLIENT *clnt)
 {
-	static char clnt_res;
+	proc_2_1_argument arg;
+	static float clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call (clnt, PROC2,
-		(xdrproc_t) xdr_wrapstring, (caddr_t) &y,
-		(xdrproc_t) xdr_char, (caddr_t) &clnt_res,
+	arg.arg1 = arg1;
+	arg.x = x;
+	if (clnt_call (clnt, PROC_2, (xdrproc_t) xdr_proc_2_1_argument, (caddr_t) &arg,
+		(xdrproc_t) xdr_float, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
 	}
 	return (&clnt_res);
 }
 
-float *
-proc3_1(char *y, float arg2,  CLIENT *clnt)
+char **
+proc_3_1(int arg1,  CLIENT *clnt)
 {
-	proc3_1_argument arg;
-	static float clnt_res;
+	static char *clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	arg.y = y;
-	arg.arg2 = arg2;
-	if (clnt_call (clnt, PROC3, (xdrproc_t) xdr_proc3_1_argument, (caddr_t) &arg,
-		(xdrproc_t) xdr_float, (caddr_t) &clnt_res,
+	if (clnt_call (clnt, PROC_3,
+		(xdrproc_t) xdr_int, (caddr_t) &arg1,
+		(xdrproc_t) xdr_wrapstring, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
 	}

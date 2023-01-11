@@ -6,11 +6,11 @@
 #include "rpc.h"
 
 bool_t
-xdr_proc3_1_argument (XDR *xdrs, proc3_1_argument *objp)
+xdr_proc_2_1_argument (XDR *xdrs, proc_2_1_argument *objp)
 {
-	 if (!xdr_string (xdrs, &objp->y, ~0))
+	 if (!xdr_int (xdrs, &objp->arg1))
 		 return FALSE;
-	 if (!xdr_float (xdrs, &objp->arg2))
+	 if (!xdr_string (xdrs, &objp->x, ~0))
 		 return FALSE;
 	return TRUE;
 }

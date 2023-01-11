@@ -17,30 +17,30 @@
 #endif
 
 static int *
-_proc1_1 (int  *argp, struct svc_req *rqstp)
+_proc_1_1 (int  *argp, struct svc_req *rqstp)
 {
-	return (proc1_1_svc(*argp, rqstp));
-}
-
-static char *
-_proc2_1 (char * *argp, struct svc_req *rqstp)
-{
-	return (proc2_1_svc(*argp, rqstp));
+	return (proc_1_1_svc(*argp, rqstp));
 }
 
 static float *
-_proc3_1 (proc3_1_argument *argp, struct svc_req *rqstp)
+_proc_2_1 (proc_2_1_argument *argp, struct svc_req *rqstp)
 {
-	return (proc3_1_svc(argp->y, argp->arg2, rqstp));
+	return (proc_2_1_svc(argp->arg1, argp->x, rqstp));
+}
+
+static char **
+_proc_3_1 (int  *argp, struct svc_req *rqstp)
+{
+	return (proc_3_1_svc(*argp, rqstp));
 }
 
 static void
 myprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 {
 	union {
-		int proc1_1_arg;
-		char *proc2_1_arg;
-		proc3_1_argument proc3_1_arg;
+		int proc_1_1_arg;
+		proc_2_1_argument proc_2_1_arg;
+		int proc_3_1_arg;
 	} argument;
 	char *result;
 	xdrproc_t _xdr_argument, _xdr_result;
@@ -51,22 +51,22 @@ myprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		(void) svc_sendreply (transp, (xdrproc_t) xdr_void, (char *)NULL);
 		return;
 
-	case PROC1:
+	case PROC_1:
 		_xdr_argument = (xdrproc_t) xdr_int;
 		_xdr_result = (xdrproc_t) xdr_int;
-		local = (char *(*)(char *, struct svc_req *)) _proc1_1;
+		local = (char *(*)(char *, struct svc_req *)) _proc_1_1;
 		break;
 
-	case PROC2:
-		_xdr_argument = (xdrproc_t) xdr_wrapstring;
-		_xdr_result = (xdrproc_t) xdr_char;
-		local = (char *(*)(char *, struct svc_req *)) _proc2_1;
-		break;
-
-	case PROC3:
-		_xdr_argument = (xdrproc_t) xdr_proc3_1_argument;
+	case PROC_2:
+		_xdr_argument = (xdrproc_t) xdr_proc_2_1_argument;
 		_xdr_result = (xdrproc_t) xdr_float;
-		local = (char *(*)(char *, struct svc_req *)) _proc3_1;
+		local = (char *(*)(char *, struct svc_req *)) _proc_2_1;
+		break;
+
+	case PROC_3:
+		_xdr_argument = (xdrproc_t) xdr_int;
+		_xdr_result = (xdrproc_t) xdr_wrapstring;
+		local = (char *(*)(char *, struct svc_req *)) _proc_3_1;
 		break;
 
 	default:
