@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "math.h"
 #include "rpc.h"
 
 /*
  * Procedure 1 accepts an integer and returns an integer.
  */
-int * proc1_1_svc(int argp , struct svc_req *rqstp)
+int *proc_1_1_svc(int argp, struct svc_req *rqstp)
 {
     static int result;
     printf("Received request for procedure 1 with argument %d\n", argp);
@@ -15,23 +16,27 @@ int * proc1_1_svc(int argp , struct svc_req *rqstp)
 }
 
 /*
- * Procedure 2 accepts a string and returns a string.
+ * Procedure 2 accepts an integer and a string then returns a float.
  */
-char *proc2_1_svc(char *argp, struct svc_req *rqstp)
-{
-    static char result[150];
-    printf("Received request to execute Procedure 2 with argument %s\n", argp);
-    sprintf(result, "Hello, %s!", argp);
-    // strcat(result, argp);
-    return result;
-}
-/*
- * Procedure 3 accepts a string and float and returns a float.
- */
-float *proc3_1_svc(char *argp, float arg2, struct svc_req *rqstp)
+float *proc_2_1_svc(int argp, char *argp2, struct svc_req *rqstp)
 {
     static float result;
-    printf("Received request for procedure 3 with argument %s and %f\n", argp, arg2);
-    result = arg2 * atof(argp);
+    printf("Received request for procedure 2 with arguments %d and %s\n", argp, argp2);
+    result = (float)argp / atof(argp2); // convert the string and int to a float and divide them
+    return &result;
+}
+
+/*
+ * Procedure 3 accepts an integer and returns a string
+ */
+char **proc_3_1_svc(int argp, struct svc_req *rqstp)
+{
+    static char *result;
+    printf("Received request for procedure 3 with argument %d\n", argp);
+    result = (char *)malloc(10);
+    int n = strlen(result) - 1;
+    sprintf(result, "%d", argp); // convert the int to a string
+    result[n] = '\0';
+    printf("Result: %s\n", result);
     return &result;
 }
