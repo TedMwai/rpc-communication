@@ -15,7 +15,7 @@ $(CLNT): $(CLNT_OBJ) rpc.h
 	gcc -o $(CLNT) $(CLNT_OBJ)
 
 $(SRVR): $(SRVR_OBJ) rpc.h
-	gcc -o $(SRVR) $(SRVR_OBJ)
+	gcc -o $(SRVR) $(SRVR_OBJ) -lm
 
 clean:
 	rm *.o $(CLNT) $(SRVR)
