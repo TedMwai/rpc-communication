@@ -1,7 +1,7 @@
 program MYPROG {
     version MYVERS {
-        int PROC1(int) = 1;
-        char PROC2(string y<>) = 2;
-        float PROC3(string y<>, float) = 3;
+        int PROC_1(int) = 1;
+        float PROC_2(int, string x<>) = 2;
+        string PROC_3(int) = 3;
     } = 1;
 } = 0x20000001;
