@@ -37,6 +37,5 @@ char **proc_3_1_svc(int argp, struct svc_req *rqstp)
     int n = strlen(result) - 1;
     sprintf(result, "%d", argp); // convert the int to a string
     result[n] = '\0';
-    printf("Result: %s\n", result);
     return &result;
 }

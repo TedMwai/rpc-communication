@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     printf("Client started\n");
     CLIENT *cl;
     int param1 = 25;
-    int param2 = 15;
+    int param2 = 37;
     char *param2_string = "2.5";
     int param3 = 7;
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
     /* Call procedure 2 */
     float procTwoResult = *proc_2_1(param2, param2_string, cl);
-    printf("Result from procedure 2: %f after converting: {%d} and: {%s} to a float\n", procTwoResult, param2, param2_string);
+    printf("Result from procedure 2: {%f} after converting: {%d} and: {%s} to a float\n", procTwoResult, param2, param2_string);
 
     /* Call procedure 3 */
     char *result_string = *proc_3_1(param3, cl);
