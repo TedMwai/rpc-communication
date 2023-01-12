@@ -5,9 +5,9 @@ It involves 3 procedures:
 ### Procedure 1
 This procedure takes in an integer and returns an integer.
 ### Procedure 2
-This procedure takes in a string and returns a string.
+This procedure takes in an integer and string then returns a float
 ### Procedure 3
-This procedure takes in a string and float and returns a float.
+This procedure takes in an integer and returns a string
 
 <!-- Image showing an overview of RPC project -->
 ### The image below shows an overview of RPC communication
